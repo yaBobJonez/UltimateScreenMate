@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c6g2c5c36shug"
+
+[deps]
+
+files=["res://autoinst/default/translate.de.translation", "res://autoinst/default/translate.en.translation", "res://autoinst/default/translate.es.translation", "res://autoinst/default/translate.fr.translation", "res://autoinst/default/translate.it.translation", "res://autoinst/default/translate.pl.translation", "res://autoinst/default/translate.ru.translation", "res://autoinst/default/translate.uk.translation"]
+
+source_file="res://autoinst/default/translate.csv"
+dest_files=["res://autoinst/default/translate.de.translation", "res://autoinst/default/translate.en.translation", "res://autoinst/default/translate.es.translation", "res://autoinst/default/translate.fr.translation", "res://autoinst/default/translate.it.translation", "res://autoinst/default/translate.pl.translation", "res://autoinst/default/translate.ru.translation", "res://autoinst/default/translate.uk.translation"]
+
+[params]
+
+compress=true
+delimiter=0

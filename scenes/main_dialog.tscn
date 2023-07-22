@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvguu8bn2elqq"]
+
+[ext_resource type="Script" path="res://scripts/main_dialog.gd" id="1_mpir6"]
+
+[node name="MainDialog" type="AcceptDialog"]
+title = "Loading"
+size = Vector2i(294, 100)
+transient = false
+exclusive = false
+unfocusable = true
+ok_button_text = "Waiting..."
+dialog_text = "Please wait for the program to load."
+dialog_hide_on_ok = false
+dialog_close_on_escape = false
+script = ExtResource("1_mpir6")
+
+[connection signal="canceled" from="." to="." method="onCancel"]
+[connection signal="confirmed" from="." to="." method="onConfirm"]

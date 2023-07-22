@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Ultimate ScreenMate"
+run/main_scene="res://scenes/main_dialog.tscn"
+config/features=PackedStringArray("4.0", "Mobile")
+
+[autoload]
+
+Utils="*res://scripts/utils.gd"
+
+[display]
+
+window/size/viewport_width=0
+window/size/viewport_height=0
+window/size/resizable=false
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/size/no_focus=true
+window/energy_saving/keep_screen_on=false
+window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
+window/vsync/vsync_mode=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/native_dialogs/plugin.cfg")
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://translate/translate.de.translation", "res://translate/translate.en.translation", "res://translate/translate.es.translation", "res://translate/translate.fr.translation", "res://translate/translate.it.translation", "res://translate/translate.pl.translation", "res://translate/translate.ru.translation", "res://translate/translate.uk.translation")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+viewport/transparent_background=true

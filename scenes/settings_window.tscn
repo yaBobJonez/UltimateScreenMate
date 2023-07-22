@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbi7b080qqml6"]
+
+[ext_resource type="Script" path="res://scripts/settings_window.gd" id="1_wr5ga"]
+
+[node name="SettingsWindow" type="Window"]
+initial_position = 2
+size = Vector2i(640, 480)
+script = ExtResource("1_wr5ga")
+
+[node name="PanelBg" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelBg"]
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="PanelBg/VBoxContainer"]
+layout_mode = 2
+text = "Skins"
+
+[node name="Skins" type="ItemList" parent="PanelBg/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_columns = 0
+icon_mode = 0
+fixed_icon_size = Vector2i(82, 82)
+
+[node name="Label2" type="Label" parent="PanelBg/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="OptionsBar" type="HBoxContainer" parent="PanelBg/VBoxContainer"]
+layout_mode = 2
+
+[node name="EnableRunningCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
+layout_mode = 2
+button_pressed = true
+text = "Enable running"
+
+[node name="EnableWalkingCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
+layout_mode = 2
+button_pressed = true
+text = "Enable walking"
+
+[node name="BottomBar" type="HBoxContainer" parent="PanelBg/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="AboutButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
+layout_mode = 2
+text = "About USM"
+
+[node name="InstallSkinButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
+layout_mode = 2
+text = "Install a skin"
+
+[node name="DeleteSkinButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
+layout_mode = 2
+text = "Delete selected"
+
+[node name="ApplyButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
+layout_mode = 2
+text = "Apply"
+
+[node name="CloseButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
+layout_mode = 2
+text = "Close"
+
+[node name="DirectoryDialog" type="NativeFileDialog" parent="."]
+title = "Open a Skin Directory"
+mode_overrides_title = false
+file_mode = 2
+access = 2
+
+[node name="NoSkinFoundDialog" type="NativeAcceptDialog" parent="."]
+title = "Failure"
+dialog_text = "The selected folder does not contain a valid skin."
+
+[node name="AboutDialog" type="AcceptDialog" parent="."]
+title = "About USM"
+size = Vector2i(449, 187)
+ok_button_text = "Close"
+dialog_text = "Ultimate ScreenMate BETA 1.0
+© 2023 Mykhailo Stetsiuk
+This program is free software under GPL v3.
+THIS PROGRAM IS INCOMPLETE AND MAY CHANGE IN
+THE FUTURE; EXPECT BUGS TO OCCUR."
+
+[connection signal="toggled" from="PanelBg/VBoxContainer/OptionsBar/EnableRunningCheck" to="." method="onRunningCheckbox"]
+[connection signal="toggled" from="PanelBg/VBoxContainer/OptionsBar/EnableWalkingCheck" to="." method="onWalkingCheckbox"]
+[connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/AboutButton" to="." method="onAbout"]
+[connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/InstallSkinButton" to="." method="onInstallSkin"]
+[connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/DeleteSkinButton" to="." method="onDeleteSkin"]
+[connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/ApplyButton" to="." method="onApply"]
+[connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/CloseButton" to="." method="onClose"]
+[connection signal="dir_selected" from="DirectoryDialog" to="." method="onInstallSkinFolderSelected"]
