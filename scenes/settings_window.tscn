@@ -7,7 +7,7 @@ initial_position = 2
 size = Vector2i(640, 480)
 script = ExtResource("1_wr5ga")
 
-[node name="PanelBg" type="PanelContainer" parent="."]
+[node name="PanelBg" type="Panel" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +18,10 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelBg"]
 layout_mode = 2
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 634.0
+offset_bottom = 475.0
 
 [node name="Label1" type="Label" parent="PanelBg/VBoxContainer"]
 layout_mode = 2
@@ -39,11 +43,13 @@ layout_mode = 2
 
 [node name="EnableRunningCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
 layout_mode = 2
+disabled = true
 button_pressed = true
 text = "Enable running"
 
 [node name="EnableWalkingCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
 layout_mode = 2
+disabled = true
 button_pressed = true
 text = "Enable walking"
 
@@ -57,11 +63,11 @@ text = "About USM"
 
 [node name="InstallSkinButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
 layout_mode = 2
-text = "Install a skin"
+text = "Install Skin"
 
 [node name="DeleteSkinButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
 layout_mode = 2
-text = "Delete selected"
+text = "Delete Skin"
 
 [node name="ApplyButton" type="Button" parent="PanelBg/VBoxContainer/BottomBar"]
 layout_mode = 2
@@ -71,22 +77,26 @@ text = "Apply"
 layout_mode = 2
 text = "Close"
 
-[node name="DirectoryDialog" type="NativeFileDialog" parent="."]
-title = "Open a Skin Directory"
+[node name="DirectoryDialog" type="FileDialog" parent="."]
+title = "Select Skin directory"
+initial_position = 4
+dialog_hide_on_ok = true
 mode_overrides_title = false
 file_mode = 2
 access = 2
+use_native_dialog = true
 
-[node name="NoSkinFoundDialog" type="NativeAcceptDialog" parent="."]
-title = "Failure"
-dialog_text = "The selected folder does not contain a valid skin."
+[node name="NoSkinFoundDialog" type="AcceptDialog" parent="."]
+title = "Error"
+initial_position = 4
+dialog_text = "INVALID_SKIN_DIR"
 
 [node name="AboutDialog" type="AcceptDialog" parent="."]
 title = "About USM"
 size = Vector2i(449, 187)
 ok_button_text = "Close"
 dialog_text = "Ultimate ScreenMate BETA 1.0
-© 2023 Mykhailo Stetsiuk
+© 2023–2024 Mykhailo Stetsiuk
 This program is free software under GPL v3.
 THIS PROGRAM IS INCOMPLETE AND MAY CHANGE IN
 THE FUTURE; EXPECT BUGS TO OCCUR."

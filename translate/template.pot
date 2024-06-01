@@ -1,0 +1,115 @@
+# LANGUAGE translation for Ultimate ScreenMate
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate ScreenMate\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+msgid "Follow me"
+msgstr ""
+
+msgid "Stay here"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "Don't do that"
+msgstr ""
+
+msgid "Once more"
+msgstr ""
+
+msgid "Do just that"
+msgstr ""
+
+msgid "Do whatever"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Quit"
+msgstr ""
+
+msgid "Skins"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Enable running"
+msgstr ""
+
+msgid "Enable walking"
+msgstr ""
+
+msgid "About USM"
+msgstr ""
+
+msgid "Install Skin"
+msgstr ""
+
+msgid "Delete Skin"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Select Skin directory"
+msgstr ""
+
+msgid "INVALID_SKIN_DIR"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+msgid "Go to Options"
+msgstr ""
+
+msgid "Loading"
+msgstr ""
+
+msgid "USM_LOADING"
+msgstr ""
+
+msgid "Waiting..."
+msgstr ""
+
+msgid "CANT_INSTALL_DEFAULT_SKINS"
+msgstr ""
+
+msgid "CONFIG_REQUIRED"
+msgstr ""
+
+msgid "BROKEN_CONFIG_RECONFIGURE"
+msgstr ""
+
+msgid "CANT_LOAD_SKIN"
+msgstr ""
+
+msgid "INCOMPLETE_SKIN"
+msgstr ""
+
+msgid "BROKEN_SKIN_IDLE"
+msgstr ""
+
+msgid "BROKEN_SKIN_DRAGGED"
+msgstr ""
+
+msgid "BROKEN_SKIN_WALKING"
+msgstr ""
+
+msgid "BROKEN_SKIN_RUNNING"
+msgstr ""

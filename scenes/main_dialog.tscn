@@ -7,11 +7,11 @@ title = "Loading"
 size = Vector2i(294, 100)
 transient = false
 exclusive = false
-unfocusable = true
 ok_button_text = "Waiting..."
-dialog_text = "Please wait for the program to load."
+dialog_text = "USM_LOADING"
 dialog_hide_on_ok = false
 dialog_close_on_escape = false
+dialog_autowrap = true
 script = ExtResource("1_mpir6")
 
 [connection signal="canceled" from="." to="." method="onCancel"]

@@ -36,7 +36,7 @@ item_0/text = "←"
 item_0/id = 0
 
 [node name="OptionsMenu" type="PopupMenu" parent="."]
-size = Vector2i(130, 228)
+size = Vector2i(140, 279)
 item_count = 9
 item_0/text = "←"
 item_0/id = 0
@@ -58,9 +58,9 @@ item_7/id = 101
 item_8/text = "Quit"
 item_8/id = 102
 
-[connection signal="animation_finished" from="Sprite" to="." method="changeState"]
+[connection signal="animation_finished" from="Sprite" to="." method="nextAnimation"]
 [connection signal="input_event" from="Sprite/Area2D" to="." method="onSpriteInputEvent"]
-[connection signal="timeout" from="StateSwitchTimer" to="." method="changeState"]
+[connection signal="timeout" from="StateSwitchTimer" to="." method="nextAnimation"]
 [connection signal="index_pressed" from="ActionsMenu" to="." method="onActionChosen"]
 [connection signal="popup_hide" from="ActionsMenu" to="." method="onUnfreeze"]
 [connection signal="id_pressed" from="OptionsMenu" to="." method="onOptionChosen"]

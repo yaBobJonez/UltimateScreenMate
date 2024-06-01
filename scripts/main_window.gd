@@ -19,10 +19,11 @@ var rng = RandomNumberGenerator.new()
 var targetPosition
 var skinDir
 var data
-var state = "idle"
+var state
 var states = []
 var action = 0
 var actions = [null]
+var discreteRepeatsLeft: int = 0
 var isDragging = []
 var isFollowing = []
 var isLooping = false
@@ -31,7 +32,7 @@ func _ready():
 	moveTargetNewRandom()
 	loadSettings()
 	loadConfig()
-	loadLocales(skinDir+"translate.csv")
+	loadLocales()
 	$MoveTimer.connect("timeout", moveSprite)
 
 func _process(delta):
@@ -47,8 +48,8 @@ func loadSettings():
 	var settings = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
 	skinDir = "user://"+settings["skin"]+"/"
 	data = JSON.parse_string(FileAccess.get_file_as_string(skinDir+"config.json"))
-	if settings["walking"] and data.has("walking"): states.push_back("walking")
-	if settings["running"] and data.has("running"): states.push_back("running")
+	#if settings["walking"] and data.has("walking"): states.push_back("walking")
+	#if settings["running"] and data.has("running"): states.push_back("running")
 
 func loadConfig():
 	$Sprite.scale = Vector2(data["scale"], data["scale"])
@@ -56,26 +57,26 @@ func loadConfig():
 	get_window().position = DisplayServer.screen_get_size()/2 - get_window().size/2
 	$Sprite/Area2D/Collision.shape.extents = get_window().size * 0.75
 	$Sprite.sprite_frames = SpriteFrames.new()
-	$Sprite.sprite_frames.add_animation("idle")
-	$Sprite.sprite_frames.set_animation_loop("idle", true)
-	$Sprite.sprite_frames.set_animation_speed("idle", data["idle"]["fps"])
-	loadAnimFrames("idle", data["idle"], data["width"], data["height"])
 	$Sprite.sprite_frames.add_animation("dragged")
 	$Sprite.sprite_frames.set_animation_loop("dragged", true)
 	$Sprite.sprite_frames.set_animation_speed("dragged", data["dragged"]["fps"])
 	loadAnimFrames("dragged", data["dragged"], data["width"], data["height"])
-	if data.has("walking"):
-		for d in ["NW", "N", "NE", "E", "SE", "S", "SW", "W"]:
-			$Sprite.sprite_frames.add_animation("walking_"+d)
-			$Sprite.sprite_frames.set_animation_loop("walking_"+d, true)
-			$Sprite.sprite_frames.set_animation_speed("walking_"+d, data["walking"]["fps"])
-			loadAnimFrames("walking_"+d, data["walking"][d], data["width"], data["height"])
-	if data.has("running"):
-		for d in ["NW", "N", "NE", "E", "SE", "S", "SW", "W"]:
-			$Sprite.sprite_frames.add_animation("running_"+d)
-			$Sprite.sprite_frames.set_animation_loop("running_"+d, true)
-			$Sprite.sprite_frames.set_animation_speed("running_"+d, data["running"]["fps"])
-			loadAnimFrames("running_"+d, data["running"][d], data["width"], data["height"])
+	for name in data["movements"]:
+		if data["movements"][name]["type"] == "continuous":
+			for d in ["NW", "N", "NE", "E", "SE", "S", "SW", "W"]:
+				$Sprite.sprite_frames.add_animation("mov_"+name+"_"+d)
+				$Sprite.sprite_frames.set_animation_loop("mov_"+name+"_"+d, true)
+				$Sprite.sprite_frames.set_animation_speed("mov_"+name+"_"+d, data["movements"][name]["fps"])
+				loadAnimFrames("mov_"+name+"_"+d, data["movements"][name][d], data["width"], data["height"])
+			if name != "following": states.append("mov_"+name)
+		elif data["movements"][name]["type"] == "discrete":
+			for d in ["in", "out", "cooldown"]:
+				$Sprite.sprite_frames.add_animation("movd_"+name+"_"+d)
+				var anim = data["movements"][name][d]
+				$Sprite.sprite_frames.set_animation_loop("movd_"+name+"_"+d, anim["duration"] != -1)
+				$Sprite.sprite_frames.set_animation_speed("movd_"+name+"_"+d, anim["fps"])
+				loadAnimFrames("movd_"+name+"_"+d, anim, data["width"], data["height"])
+			states.append("movd_"+name)
 	for name in data["random"]:
 		$Sprite.sprite_frames.add_animation(name)
 		var rAnim = data["random"][name]
@@ -90,8 +91,10 @@ func loadConfig():
 		$Sprite.sprite_frames.set_animation_speed("act_"+name, rAnim["fps"])
 		loadAnimFrames("act_"+name, rAnim, data["width"], data["height"])
 		actions.push_back(name); $ActionsMenu.add_item(name)
-	$Sprite.play("idle")
-	$StateSwitchTimer.start(data["idle"]["duration"])
+	state = "idle" if states.has("idle") else states[0]
+	states.erase("idle" if states.has("idle") else states[0])
+	$Sprite.play(state)
+	$StateSwitchTimer.start(data["random"][state]["duration"])
 func loadAnimFrames(anim, datum, width, height):
 	var sheet = ImageTexture.create_from_image(Image.load_from_file(skinDir+datum["file"]))
 	var frames = []
@@ -105,16 +108,19 @@ func loadAnimFrames(anim, datum, width, height):
 			$Sprite.sprite_frames.add_frame(anim, frames[arrItem["id"]], arrItem["time"])
 		else: $Sprite.sprite_frames.add_frame(anim, frames[item["id"]], item["time"])
 
-func loadLocales(path):
-	var csv = []; var f = FileAccess.open(path, FileAccess.READ)
-	while not f.eof_reached(): var csvline = f.get_csv_line(); if csvline[0] != "": csv.append(csvline)
-	for col in range(1, csv[0].size()):
-		var tr = TranslationServer.get_translation_object(csv[0][col])
-		if tr == null:
-			tr = Translation.new()
-			tr.locale = csv[0][col]
-		for row in range(1, csv.size()): tr.add_message(csv[row][0], csv[row][col])
-		TranslationServer.add_translation(tr)
+func loadLocales():
+	var newFiles = ( Array(DirAccess.get_files_at(skinDir+"translate"))
+		.filter(func(name): return name.ends_with(".po"))
+		.map(func(name): return skinDir+"translate/"+name) )
+	for newFile in newFiles:
+		var locale = newFile.get_file().get_basename()
+		var newTranslation = load(newFile) as Translation
+		var currTranslation = TranslationServer.get_translation_object(locale)
+		if currTranslation == null: currTranslation = newTranslation
+		else: for msgid in newTranslation.get_message_list():
+			currTranslation.erase_message(msgid)
+			currTranslation.add_message(msgid, newTranslation.get_message(msgid))
+		TranslationServer.add_translation(currTranslation)
 	TranslationServer.set_locale(TranslationServer.get_locale())
 
 func moveTargetNewRandom():
@@ -122,9 +128,9 @@ func moveTargetNewRandom():
 	var y = rng.randi_range(20, DisplayServer.screen_get_size().y - get_window().size.y - 20)
 	targetPosition = Vector2(x, y)
 func moveSprite():
-	if isDragging.is_empty():
-		if !isFollowing.is_empty(): moveSpritePer("walking", data["walking"]["speed"])
-		elif state in ["walking", "running"]: moveSpritePer(state, data[state]["speed"])
+	if !isDragging.is_empty(): return
+	if !isFollowing.is_empty(): moveSpritePer("mov_following", data["movements"]["following"]["speed"])
+	elif state.begins_with("mov_"): moveSpritePer(state, data["movements"][state.erase(0, 4)]["speed"])
 func moveSpritePer(prefix, speed):
 	var directionV2 = targetPosition - Vector2(get_window().position)
 	var whereTo = Vector2i(directionV2.normalized() * speed)
@@ -140,9 +146,28 @@ func moveSpritePer(prefix, speed):
 	get_window().position += whereTo
 	if directionV2.length_squared() < speed*speed:
 		if not isFollowing.is_empty():
-			$Sprite.play("idle")
+			$Sprite.play("idle" if states.has("idle") else states[0])
 			$MoveTimer.paused = true
 		else: moveTargetNewRandom()
+
+func nextAnimation():
+	if state.begins_with("movd_") and discreteRepeatsLeft > 0:
+		var curr = data["movements"][state.erase(0, 5)]
+		match discreteRepeatsLeft % 3:
+			2:
+				$Sprite.play(state+"_out")
+				if curr["out"]["duration"] != -1: $StateSwitchTimer.start(curr["out"]["duration"])
+			1:
+				var x = rng.randi_range(20, DisplayServer.screen_get_size().x - get_window().size.x - 20)
+				var y = rng.randi_range(20, DisplayServer.screen_get_size().y - get_window().size.y - 20)
+				get_window().position = Vector2i(x, y)
+				$Sprite.play(state+"_in")
+				if curr["in"]["duration"] != -1: $StateSwitchTimer.start(curr["in"]["duration"])
+			0:
+				$Sprite.play(state+"_cooldown")
+				if curr["cooldown"]["duration"] != -1: $StateSwitchTimer.start(curr["cooldown"]["duration"])
+		discreteRepeatsLeft -= 1
+	else: changeState()
 
 func onSpriteInputEvent(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -178,8 +203,13 @@ func changeState():
 			$StateSwitchTimer.start(data["actions"][actions[action]]["duration"])
 		else: $StateSwitchTimer.stop()
 	else:
-		if state not in ["walking", "running"]: $Sprite.play(state)
-		if state in ["idle", "walking", "running"]: $StateSwitchTimer.start(data[state]["duration"])
+		if not state.begins_with("mov_") and not state.begins_with("movd_"): $Sprite.play(state)
+		if state.begins_with("mov_"):
+			$StateSwitchTimer.start(data["movements"][state.erase(0, 4)]["duration"])
+		elif state.begins_with("movd_"):
+			#$StateSwitchTimer.stop()
+			discreteRepeatsLeft = 3 * data["movements"][state.erase(0, 5)]["repeats"] - 1
+			nextAnimation()
 		elif data["random"][state]["duration"] != -1:
 			$StateSwitchTimer.start(data["random"][state]["duration"])
 		else: $StateSwitchTimer.stop()
@@ -224,7 +254,7 @@ func onOptionChosen(id):
 		if(states.size() < 1): $OptionsMenu.set_item_disabled(index, true)
 	elif id == 4:
 		$Sprite.frame = 0
-		if state in ["idle", "walking", "running"]: $StateSwitchTimer.start(data[state]["duration"])
+		if state.begins_with("mov_"): $StateSwitchTimer.start(data["movements"][state.erase(0, 4)]["duration"])
 		elif state == "_ACTION": onActionChosen(action)
 		elif data["random"][state]["duration"] != -1:
 			$StateSwitchTimer.start(data["random"][state]["duration"])

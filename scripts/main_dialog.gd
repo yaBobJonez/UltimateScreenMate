@@ -19,13 +19,14 @@ var skinDir
 var isQuit
 
 func _ready():
-	skinDir = null; isQuit = false
-	DisplayServer.window_set_size(Vector2i(0, 0))
+	skinDir = null; isQuit = true
+	#DisplayServer.window_set_size(Vector2i(0, 0))
 	self.add_cancel_button("Quit")
 	self.popup_centered()
 	doAutoInstall()
 	await verifySettings()
 	await verifyConfig()
+	isQuit = false
 	get_tree().change_scene_to_file("res://scenes/main_window.tscn")
 
 func _process(delta): pass
@@ -34,7 +35,7 @@ func doAutoInstall():
 	if DirAccess.open(".").dir_exists("autoinst"):
 		if Utils.copy_dir("autoinst", "user://") != Error.OK:
 			self.title = "Error"
-			self.dialog_text = "Default skins installation failed, cannot proceed."
+			self.dialog_text = "CANT_INSTALL_DEFAULT_SKINS"
 			self.remove_button(self.get_ok_button())
 			self.popup_centered(); await self.canceled
 		if Utils.remove_dir("autoinst") != Error.OK: return
@@ -44,7 +45,7 @@ func verifySettings():
 	var settings = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
 	if settings == null:
 		self.title = "Warning"
-		self.dialog_text = "You have to configure the program to start."
+		self.dialog_text = "CONFIG_REQUIRED"
 		self.ok_button_text = "Go to Options"
 		self.popup_centered(); await self.confirmed
 	match settings:
@@ -52,7 +53,7 @@ func verifySettings():
 			skinDir = "user://"+settings["skin"]+"/"
 		_:
 			self.title = "Warning"
-			self.dialog_text = "The config file may be broken, you have to reconfigure the program."
+			self.dialog_text = "BROKEN_CONFIG_RECONFIGURE"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 
@@ -60,42 +61,42 @@ func verifyConfig():
 	var data = JSON.parse_string(FileAccess.get_file_as_string(skinDir+"config.json"))
 	if data == null:
 		self.title = "Error"
-		self.dialog_text = "The selected skin could not be loaded, please verify it and reconfigure."
+		self.dialog_text = "CANT_LOAD_SKIN"
 		self.ok_button_text = "Go to Options"
 		self.popup_centered(); await self.confirmed
 	match data:
-		{"title":_,"width":_,"height":_,"scale":_,"idle":_,"dragged":_,"random":_,"actions":_,..}: pass
+		{"title":_,"width":_,"height":_,"scale":_,"dragged":_,"random":_,"actions":_,..}: pass
 		_:
 			self.title = "Error"
-			self.dialog_text = "The selected skin is incomplete, please verify your installation."
+			self.dialog_text = "INCOMPLETE_SKIN"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
-	match data["idle"]:
+	if data.has("movements") and data["movements"].has("idle"): match data["movements"]["idle"]:
 		{"file":_,"fps":_,"duration":_,"frames":[{"id":_,"time":_,..},..]}: pass
 		_:
 			self.title = "Error"
-			self.dialog_text = "The selected skin may be broken: 'idle' is incomplete."
+			self.dialog_text = "BROKEN_SKIN_IDLE"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 	match data["dragged"]:
 		{"file":_,"fps":_,"frames":[{"id":_,"time":_,..},..]}: pass
 		_:
 			self.title = "Error"
-			self.dialog_text = "The selected skin may be broken: 'dragged' is incomplete."
+			self.dialog_text = "BROKEN_SKIN_DRAGGED"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 	if data.has("walking"): match data["walking"]:
 		{"speed":_,"fps":_,"duration":_,"NW":_,"N":_,"NE":_,"E":_,"SE":_,"S":_,"SW":_,"W":_,..}: pass
 		_:
 			self.title = "Error"
-			self.dialog_text = "The selected skin may be broken: 'walking' is incomplete."
+			self.dialog_text = "BROKEN_SKIN_WALKING"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 	if data.has("running"): match data["running"]:
 		{"speed":_,"fps":_,"duration":_,"NW":_,"N":_,"NE":_,"E":_,"SE":_,"S":_,"SW":_,"W":_,..}: pass
 		_:
 			self.title = "Error"
-			self.dialog_text = "The selected skin may be broken: 'running' is incomplete."
+			self.dialog_text = "BROKEN_SKIN_RUNNING"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 

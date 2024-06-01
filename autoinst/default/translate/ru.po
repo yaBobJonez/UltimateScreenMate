@@ -1,0 +1,25 @@
+# LANGUAGE translation for USM skin "default"
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: USM default\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Mykhailo Stetsiuk <yaBobJonez@gmail.com>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+msgid "feed"
+msgstr "Покормить"
+
+msgid "pet"
+msgstr "Погладить"
+
+msgid "play"
+msgstr "Поиграть"

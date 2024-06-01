@@ -1,3 +1,5 @@
+Copyright (c) 2023–2024 Mykhailo Stetsiuk
+
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -12,10 +14,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ----------------------------------------------------------------------
-
-This program includes a third-party component NativeDialogs Godot Addon,
-provided under the terms of the MIT license. The original copy of the
-addon may be obtained at <https://github.com/98teg/NativeDialogs>.
 
 Files under /translate may contain community-contributed translations,
 which are subject to GPLv3 when distributed in the project as a whole.

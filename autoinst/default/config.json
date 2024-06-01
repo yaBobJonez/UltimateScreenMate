@@ -1,187 +1,599 @@
 {
-  "title": "Default",
-  "width": 256,
-  "height": 256,
-  "scale": 0.5,
-  "idle": {
-	"file": "textures/idle.png",
-	"fps": 2,
-	"duration": 10,
-	"frames": [
-	  {"id": 1, "time": 2},
-	  {"id": 0, "time": 3},
-	  {"id": 2, "time": 1}
-	]
-  },
-  "dragged": {
-	"file": "textures/dragged.png",
-	"fps": 1,
-	"frames": [
-	  {"id": 0, "time": 1},
-	  {"id": 1, "time": 1}
-	]
-  },
-  "walking": {
-	"speed": 10,
-	"fps": 1.5,
-	"duration": 10,
-	"NW": {
-	  "file": "textures/walking_NW.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"N": {
-	  "file": "textures/walking_N.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"NE": {
-	  "file": "textures/walking_NE.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"E": {
-	  "file": "textures/walking_E.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"SE": {
-	  "file": "textures/walking_SE.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"S": {
-	  "file": "textures/walking_S.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"SW": {
-	  "file": "textures/walking_SW.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"W": {
-	  "file": "textures/walking_W.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	}
-  },
-  "running": {
-	"speed": 60,
-	"fps": 3,
-	"duration": 10,
-	"NW": {
-	  "file": "textures/running_NW.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"N": {
-	  "file": "textures/running_N.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"NE": {
-	  "file": "textures/running_NE.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"E": {
-	  "file": "textures/running_E.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"SE": {
-	  "file": "textures/running_SE.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"S": {
-	  "file": "textures/running_S.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"SW": {
-	  "file": "textures/running_SW.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	},
-	"W": {
-	  "file": "textures/running_W.png",
-	  "frames": [ {"id": 0, "time": 1}, {"id": 1, "time": 1} ]
-	}
-  },
-  "random": {
-	"sleeping": {
-	  "file": "textures/sleeping.png",
-	  "fps": 0.7,
-	  "duration": -1,
-	  "frames": [
-		{"id": 0, "time": 1},
-		[
-		  7,
-		  {"id": 1, "time": 2},
-		  {"id": 2, "time": 2}
-		],
-		{"id": 0, "time": 1},
-		{"id": 3, "time": 1}
-	  ]
-	},
-	"sharping_claws": {
-	  "file": "textures/sharping.png",
-	  "fps": 1,
-	  "duration": 15,
-	  "frames": [
-		{"id": 0, "time": 1},
-		{"id": 1, "time": 1}
-	  ]
-	},
-	"washing": {
-	  "file": "textures/washing.png",
-	  "fps": 1.4,
-	  "duration": -1,
-	  "frames": [
-		[
-			7,
-			{"id": 0, "time": 1},
-			{"id": 1, "time": 1},
-		],
-		{"id": 2, "time": 2.2}
-	  ]
-	}
-  },
-  "actions": {
-	"feed": {
-	  "file": "textures/act_eating.png",
-	  "fps": 0.7, "duration": -1,
-	  "frames": [
-		{"id": 0, "time": 1},
-		{"id": 1, "time": 2},
-		[
-		  3,
-		  {"id": 2, "time": 1.7},
-		  {"id": 3, "time": 1.7}
-		],
-		[
-		  3,
-		  {"id": 4, "time": 1.7},
-		  {"id": 5, "time": 1.7}
-		],
-		[
-		  3,
-		  {"id": 6, "time": 1.7},
-		  {"id": 7, "time": 1.7}
-		],
-		{"id": 8, "time": 0.7},
-		{"id": 9, "time": 0.7}
-	  ]
-	},
-	"pet": {
-	  "file": "textures/act_petting.png",
-	  "fps": 1.2, "duration": -1,
-	  "frames": [
-		{"id": 0, "time": 1},
-		{"id": 1, "time": 1},
-		[
-		  6,
-		  {"id": 2, "time": 1},
-		  {"id": 3, "time": 1},
-		  {"id": 4, "time": 1}
+	"title":"Default",
+	"width":256,
+	"height":256,
+	"scale":0.5,
+	"dragged":{
+		"file":"textures/dragged.png",
+		"fps":1,
+		"frames":[
+			{
+				"id":0,
+				"time":1
+			},
+			{
+				"id":1,
+				"time":1
+			}
 		]
-	  ]
 	},
-	"play": {
-	  "file": "textures/act_playing.png",
-	  "fps": 1.2, "duration": 22,
-	  "frames": [
-		{"id": 0, "time": 1},
-		{"id": 1, "time": 1},
-		{"id": 2, "time": 1}
-	  ]
+	"movements":{
+		"following":{
+			"type":"continuous",
+			"speed":15,
+			"fps":1.7,
+			"NW":{
+				"file":"textures/walking_NW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"N":{
+				"file":"textures/walking_N.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"NE":{
+				"file":"textures/walking_NE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"E":{
+				"file":"textures/walking_E.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SE":{
+				"file":"textures/walking_SE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"S":{
+				"file":"textures/walking_S.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SW":{
+				"file":"textures/walking_SW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"W":{
+				"file":"textures/walking_W.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			}
+		},
+		"walking":{
+			"type":"continuous",
+			"speed":10,
+			"fps":1.5,
+			"duration":10,
+			"NW":{
+				"file":"textures/walking_NW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"N":{
+				"file":"textures/walking_N.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"NE":{
+				"file":"textures/walking_NE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"E":{
+				"file":"textures/walking_E.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SE":{
+				"file":"textures/walking_SE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"S":{
+				"file":"textures/walking_S.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SW":{
+				"file":"textures/walking_SW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"W":{
+				"file":"textures/walking_W.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			}
+		},
+		"running":{
+			"type":"continuous",
+			"speed":60,
+			"fps":3,
+			"duration":10,
+			"NW":{
+				"file":"textures/running_NW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"N":{
+				"file":"textures/running_N.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"NE":{
+				"file":"textures/running_NE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"E":{
+				"file":"textures/running_E.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SE":{
+				"file":"textures/running_SE.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"S":{
+				"file":"textures/running_S.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"SW":{
+				"file":"textures/running_SW.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			},
+			"W":{
+				"file":"textures/running_W.png",
+				"frames":[
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				]
+			}
+		},
+		"teleporting":{
+			"type":"discrete",
+			"repeats": 5,
+			"out":{
+				"file":"textures/teleporting.png",
+				"fps":4,
+				"duration":-1,
+				"frames":[
+					{ "id":0, "time":1 },
+					{ "id":1, "time":1 },
+					{ "id":2, "time":1 },
+					{ "id":3, "time":1 },
+					{ "id":4, "time":1 },
+					{ "id":5, "time":1 },
+					{ "id":6, "time":1 },
+					{ "id":7, "time":1 },
+					{ "id":8, "time":1 },
+					{ "id":9, "time":1 }
+				]
+			},
+			"in":{
+				"file":"textures/teleporting.png",
+				"fps":4,
+				"duration":-1,
+				"frames":[
+					{ "id":9, "time":1 },
+					{ "id":8, "time":1 },
+					{ "id":7, "time":1 },
+					{ "id":6, "time":1 },
+					{ "id":5, "time":1 },
+					{ "id":4, "time":1 },
+					{ "id":3, "time":1 },
+					{ "id":2, "time":1 },
+					{ "id":1, "time":1 },
+					{ "id":0, "time":1 }
+				]
+			},
+			"cooldown":{
+				"file":"textures/idle.png",
+				"fps":1,
+				"duration":3,
+				"frames":[
+					{
+						"id":1,
+						"time":1
+					},
+					{
+						"id":0,
+						"time":1
+					}
+				]
+			}
+		}
+	},
+	"random":{
+		"idle":{
+			"file":"textures/idle.png",
+			"fps":2,
+			"duration":10,
+			"frames":[
+				{
+					"id":1,
+					"time":2
+				},
+				{
+					"id":0,
+					"time":3
+				},
+				{
+					"id":2,
+					"time":1
+				}
+			]
+		},
+		"sleeping":{
+			"file":"textures/sleeping.png",
+			"fps":0.7,
+			"duration":-1,
+			"frames":[
+				{
+					"id":0,
+					"time":1
+				},
+				[
+					7,
+					{
+						"id":1,
+						"time":2
+					},
+					{
+						"id":2,
+						"time":2
+					}
+				],
+				{
+					"id":0,
+					"time":1
+				},
+				{
+					"id":3,
+					"time":1
+				}
+			]
+		},
+		"sharping_claws":{
+			"file":"textures/sharping.png",
+			"fps":1,
+			"duration":15,
+			"frames":[
+				{
+					"id":0,
+					"time":1
+				},
+				{
+					"id":1,
+					"time":1
+				}
+			]
+		},
+		"washing":{
+			"file":"textures/washing.png",
+			"fps":1.4,
+			"duration":-1,
+			"frames":[
+				[
+					7,
+					{
+						"id":0,
+						"time":1
+					},
+					{
+						"id":1,
+						"time":1
+					}
+				],
+				{
+					"id":2,
+					"time":2.2
+				}
+			]
+		}
+	},
+	"actions":{
+		"feed":{
+			"file":"textures/act_eating.png",
+			"fps":0.7,
+			"duration":-1,
+			"frames":[
+				{
+					"id":0,
+					"time":1
+				},
+				{
+					"id":1,
+					"time":2
+				},
+				[
+					3,
+					{
+						"id":2,
+						"time":1.7
+					},
+					{
+						"id":3,
+						"time":1.7
+					}
+				],
+				[
+					3,
+					{
+						"id":4,
+						"time":1.7
+					},
+					{
+						"id":5,
+						"time":1.7
+					}
+				],
+				[
+					3,
+					{
+						"id":6,
+						"time":1.7
+					},
+					{
+						"id":7,
+						"time":1.7
+					}
+				],
+				{
+					"id":8,
+					"time":0.7
+				},
+				{
+					"id":9,
+					"time":0.7
+				}
+			]
+		},
+		"pet":{
+			"file":"textures/act_petting.png",
+			"fps":1.2,
+			"duration":-1,
+			"frames":[
+				{
+					"id":0,
+					"time":1
+				},
+				{
+					"id":1,
+					"time":1
+				},
+				[
+					6,
+					{
+						"id":2,
+						"time":1
+					},
+					{
+						"id":3,
+						"time":1
+					},
+					{
+						"id":4,
+						"time":1
+					}
+				]
+			]
+		},
+		"play":{
+			"file":"textures/act_playing.png",
+			"fps":1.2,
+			"duration":22,
+			"frames":[
+				{
+					"id":0,
+					"time":1
+				},
+				{
+					"id":1,
+					"time":1
+				},
+				{
+					"id":2,
+					"time":1
+				}
+			]
+		}
 	}
-  }
 }

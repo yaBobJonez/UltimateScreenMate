@@ -1,0 +1,121 @@
+# LANGUAGE translation for Ultimate ScreenMate
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate ScreenMate\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Mykhailo Stetsiuk <yaBobJonez@gmail.com>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+msgid "Follow me"
+msgstr "Следуй за мной"
+
+msgid "Stay here"
+msgstr "Оставайся здесь"
+
+msgid "Stop"
+msgstr "Прекрати"
+
+msgid "Don't do that"
+msgstr "Не делай этого"
+
+msgid "Once more"
+msgstr "Ещё раз"
+
+msgid "Do just that"
+msgstr "Делай только это"
+
+msgid "Do whatever"
+msgstr "Делай что угодно"
+
+msgid "Options"
+msgstr "Опции"
+
+msgid "Quit"
+msgstr "Выйти"
+
+msgid "Skins"
+msgstr "Скины"
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "Enable running"
+msgstr "Включить бег"
+
+msgid "Enable walking"
+msgstr "Включить ходьбу"
+
+msgid "About USM"
+msgstr "Об USM"
+
+msgid "Install Skin"
+msgstr "Установить скин"
+
+msgid "Delete Skin"
+msgstr "Удалить скин"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Select Skin directory"
+msgstr "Выберите папку со скином"
+
+msgid "INVALID_SKIN_DIR"
+msgstr "Выбранная папка не содержит корректного скина."
+
+msgid "Error"
+msgstr "Ошибка"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+msgid "Go to Options"
+msgstr "Перейти к Опциям"
+
+msgid "Loading"
+msgstr "Загрузка"
+
+msgid "USM_LOADING"
+msgstr "Пожалуйста, подождите пока USM загрузится."
+
+msgid "Waiting..."
+msgstr "Ожидание..."
+
+msgid "CANT_INSTALL_DEFAULT_SKINS"
+msgstr "Не удалось установить стандартные скины, невозможно продолжить."
+
+msgid "CONFIG_REQUIRED"
+msgstr "Вам необходимо настроить USM, чтобы начать."
+
+msgid "BROKEN_CONFIG_RECONFIGURE"
+msgstr "Файл конфигурации вероятно повреждён, необходимо перенастроить USM."
+
+msgid "CANT_LOAD_SKIN"
+msgstr "Не удалось загрузить выбранный скин, перепроверьте и перенастройте USM."
+
+msgid "INCOMPLETE_SKIN"
+msgstr "Выбранный скин неполный, проверьте установку."
+
+msgid "BROKEN_SKIN_IDLE"
+msgstr "Выбранный скин может быть повреждён: 'idle' неполный."
+
+msgid "BROKEN_SKIN_DRAGGED"
+msgstr "Выбранный скин может быть повреждён: 'dragged' неполный."
+
+msgid "BROKEN_SKIN_WALKING"
+msgstr "Выбранный скин может быть повреждён: 'walking' неполный."
+
+msgid "BROKEN_SKIN_RUNNING"
+msgstr "Выбранный скин может быть повреждён: 'running' неполный."

@@ -31,7 +31,7 @@ func onApply():
 	config["running"] = $PanelBg/VBoxContainer/OptionsBar/EnableRunningCheck.button_pressed
 	FileAccess.open("config.json", FileAccess.WRITE).store_string(JSON.stringify(config))
 func onClose():
-	get_tree().change_scene_to_file("res://scenes/main_dialog.tscn")
+	get_tree().change_scene_to_file("res://scenes/main_window.tscn")
 
 func refreshSkins():
 	$PanelBg/VBoxContainer/Skins.clear()
@@ -41,8 +41,11 @@ func refreshSkins():
 		if not exeDir.file_exists(dirName+"/config.json"): continue
 		var data = JSON.parse_string(FileAccess.get_file_as_string("user://"+dirName+"/config.json"))
 		var atlas = AtlasTexture.new()
+		var iconRelPath = (data["random"]["idle"]["file"]
+						   if data["random"].has("idle")
+						   else data["random"].values()[0]["file"])
 		atlas.atlas = ImageTexture.create_from_image(
-			Image.load_from_file("user://%s/%s" % [dirName, data["idle"]["file"]])
+			Image.load_from_file("user://%s/%s" % [dirName, iconRelPath])
 		)
 		atlas.region = Rect2(0, 0, data["width"], data["height"])
 		$PanelBg/VBoxContainer/Skins.add_item(data["title"], atlas)

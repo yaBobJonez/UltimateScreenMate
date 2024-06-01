@@ -1,0 +1,121 @@
+# LANGUAGE translation for Ultimate ScreenMate
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate ScreenMate\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Mykhailo Stetsiuk <yaBobJonez@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+msgid "Follow me"
+msgstr "Follow me"
+
+msgid "Stay here"
+msgstr "Stay here"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "Don't do that"
+msgstr "Don't do that"
+
+msgid "Once more"
+msgstr "Once more"
+
+msgid "Do just that"
+msgstr "Do just that"
+
+msgid "Do whatever"
+msgstr "Do whatever"
+
+msgid "Options"
+msgstr "Options"
+
+msgid "Quit"
+msgstr "Quit"
+
+msgid "Skins"
+msgstr "Skins"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Enable running"
+msgstr "Enable running"
+
+msgid "Enable walking"
+msgstr "Enable walking"
+
+msgid "About USM"
+msgstr "About USM"
+
+msgid "Install Skin"
+msgstr "Install Skin"
+
+msgid "Delete Skin"
+msgstr "Delete Skin"
+
+msgid "Apply"
+msgstr "Apply"
+
+msgid "Close"
+msgstr "CLOSE"
+
+msgid "Select Skin directory"
+msgstr "Select Skin directory"
+
+msgid "INVALID_SKIN_DIR"
+msgstr "Selected folder does not contain a valid skin."
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Warning"
+msgstr "Warning"
+
+msgid "Go to Options"
+msgstr "Go to Options"
+
+msgid "Loading"
+msgstr "Loading"
+
+msgid "USM_LOADING"
+msgstr "Please wait for USM to load."
+
+msgid "Waiting..."
+msgstr "Waiting..."
+
+msgid "CANT_INSTALL_DEFAULT_SKINS"
+msgstr "Default skins installation failed, cannot proceed."
+
+msgid "CONFIG_REQUIRED"
+msgstr "You have to configure USM to start."
+
+msgid "BROKEN_CONFIG_RECONFIGURE"
+msgstr "Config file may be broken, you have to reconfigure USM."
+
+msgid "CANT_LOAD_SKIN"
+msgstr "Selected skin could not be loaded, verify it and reconfigure USM."
+
+msgid "INCOMPLETE_SKIN"
+msgstr "Selected skin is incomplete, verify your installation."
+
+msgid "BROKEN_SKIN_IDLE"
+msgstr "Selected skin is broken: 'idle' is incomplete."
+
+msgid "BROKEN_SKIN_DRAGGED"
+msgstr "Selected skin may be broken: 'dragged' is incomplete."
+
+msgid "BROKEN_SKIN_WALKING"
+msgstr "Selected skin may be broken: 'walking' is incomplete."
+
+msgid "BROKEN_SKIN_RUNNING"
+msgstr "Selected skin may be broken: 'running' is incomplete."

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ultimate ScreenMate"
 run/main_scene="res://scenes/main_dialog.tscn"
-config/features=PackedStringArray("4.0", "Mobile")
+config/features=PackedStringArray("4.2", "Mobile")
 
 [autoload]
 
@@ -34,11 +34,20 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/native_dialogs/plugin.cfg")
+enabled=PackedStringArray()
+
+[filesystem]
+
+import/blender/enabled=false
+
+[gui]
+
+theme/custom="res://scenes/gui.theme"
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translate/translate.de.translation", "res://translate/translate.en.translation", "res://translate/translate.es.translation", "res://translate/translate.fr.translation", "res://translate/translate.it.translation", "res://translate/translate.pl.translation", "res://translate/translate.ru.translation", "res://translate/translate.uk.translation")
+locale/translations=PackedStringArray("res://translate/en.po", "res://translate/ru.po", "res://translate/uk.po")
+locale/test="ru"
 
 [rendering]
 
