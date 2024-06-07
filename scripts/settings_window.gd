@@ -1,4 +1,4 @@
-#	Copyright © 2023 Mykhailo Stetsiuk
+#	Copyright © 2023–2024 Mykhailo Stetsiuk
 #
 #	This file is part of Ultimate ScreenMate.
 #
@@ -15,47 +15,46 @@
 
 extends Window
 
+var skinDir
+
 var skinsList = []
-var config = {}
+var config = []
 
 func _ready():
 	refreshSkins()
 
-func _process(delta):
-	pass
-
 func onApply():
 	if not $PanelBg/VBoxContainer/Skins.is_anything_selected(): return
-	config["skin"] = skinsList[$PanelBg/VBoxContainer/Skins.get_selected_items()[0]]
-	config["walking"] = $PanelBg/VBoxContainer/OptionsBar/EnableWalkingCheck.button_pressed
-	config["running"] = $PanelBg/VBoxContainer/OptionsBar/EnableRunningCheck.button_pressed
+	skinDir = skinsList[$PanelBg/VBoxContainer/Skins.get_selected_items()[0]]
+	config = []
+	for mate in Utils.matesList:
+		config.append({ "skin": mate.skinDir })
+	config.append({ "skin": skinDir })
 	FileAccess.open("config.json", FileAccess.WRITE).store_string(JSON.stringify(config))
 func onClose():
-	get_tree().change_scene_to_file("res://scenes/main_window.tscn")
+	if skinDir != "": Utils.add_mate(skinDir)
+	self.queue_free()
 
 func refreshSkins():
 	$PanelBg/VBoxContainer/Skins.clear()
 	skinsList.clear()
 	var exeDir = DirAccess.open("user://")
 	for dirName in exeDir.get_directories():
-		if not exeDir.file_exists(dirName+"/config.json"): continue
-		var data = JSON.parse_string(FileAccess.get_file_as_string("user://"+dirName+"/config.json"))
+		dirName = "user://"+dirName+"/"
+		if not exeDir.file_exists(dirName+"config.json"): continue
+		var data = JSON.parse_string(FileAccess.get_file_as_string(dirName+"config.json"))
 		var atlas = AtlasTexture.new()
 		var iconRelPath = (data["random"]["idle"]["file"]
 						   if data["random"].has("idle")
 						   else data["random"].values()[0]["file"])
-		atlas.atlas = ImageTexture.create_from_image(
-			Image.load_from_file("user://%s/%s" % [dirName, iconRelPath])
-		)
+		atlas.atlas = ImageTexture.create_from_image(Image.load_from_file(dirName+iconRelPath))
 		atlas.region = Rect2(0, 0, data["width"], data["height"])
 		$PanelBg/VBoxContainer/Skins.add_item(data["title"], atlas)
 		skinsList.push_back(dirName)
 	if skinsList.size() < 2:
 		$PanelBg/VBoxContainer/BottomBar/DeleteSkinButton.disabled = true
-	config = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
-	if config == null: config = {"walking": true, "running": true}
-	elif config["skin"] in skinsList:
-		$PanelBg/VBoxContainer/Skins.select(skinsList.find(config["skin"]))
+	if skinDir in skinsList:
+		$PanelBg/VBoxContainer/Skins.select(skinsList.find(skinDir))
 
 func onInstallSkin(): $DirectoryDialog.show()
 func onInstallSkinFolderSelected(dir):
@@ -69,15 +68,13 @@ func onInstallSkinFolderSelected(dir):
 func onDeleteSkin():
 	var index = $PanelBg/VBoxContainer/Skins.get_selected_items()[0]
 	var dirToDel = skinsList[index]
-	if Utils.remove_dir("user://"+dirToDel) != Error.OK: return
-	DirAccess.remove_absolute("user://"+dirToDel)
+	if Utils.remove_dir(dirToDel) != Error.OK: return
+	DirAccess.remove_absolute(dirToDel)
 	skinsList.remove_at(index)
-	if config["skin"] == dirToDel:
-		config["skin"] = skinsList[0]
-		FileAccess.open("config.json", FileAccess.WRITE).store_string(JSON.stringify(config))
+	for mate in Utils.matesList:
+		if mate.skinDir == dirToDel: mate.skinDir == skinsList[0]
+		$PanelBg/VBoxContainer/Skins.select(0)
+		onApply()
 	refreshSkins()
-
-func onRunningCheckbox(button_pressed): config["running"] = button_pressed
-func onWalkingCheckbox(button_pressed): config["walking"] = button_pressed
 
 func onAbout(): $AboutDialog.popup_centered()

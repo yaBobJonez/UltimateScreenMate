@@ -1,4 +1,4 @@
-#	Copyright © 2023 Mykhailo Stetsiuk
+#	Copyright © 2023–2024 Mykhailo Stetsiuk
 #
 #	This file is part of Ultimate ScreenMate.
 #
@@ -15,9 +15,10 @@
 
 extends MarginContainer
 
+var skinDir
+
 var rng = RandomNumberGenerator.new()
 var targetPosition
-var skinDir
 var data
 var state
 var states = []
@@ -30,10 +31,11 @@ var isLooping = false
 
 func _ready():
 	moveTargetNewRandom()
-	loadSettings()
+	data = JSON.parse_string(FileAccess.get_file_as_string(skinDir+"config.json"))
 	loadConfig()
 	loadLocales()
 	$MoveTimer.connect("timeout", moveSprite)
+	print(Utils.matesList)
 
 func _process(delta):
 	if not isDragging.is_empty():
@@ -43,13 +45,6 @@ func _process(delta):
 		if cursorLocation != targetPosition:
 			$MoveTimer.paused = false
 			targetPosition = cursorLocation
-
-func loadSettings():
-	var settings = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
-	skinDir = "user://"+settings["skin"]+"/"
-	data = JSON.parse_string(FileAccess.get_file_as_string(skinDir+"config.json"))
-	#if settings["walking"] and data.has("walking"): states.push_back("walking")
-	#if settings["running"] and data.has("running"): states.push_back("running")
 
 func loadConfig():
 	$Sprite.scale = Vector2(data["scale"], data["scale"])
@@ -263,7 +258,14 @@ func onOptionChosen(id):
 		isLooping = !isLooping
 		$OptionsMenu.set_item_text(index, "Do whatever" if isLooping else "Do just that")
 	elif id == 101:
-		DisplayServer.window_set_size(Vector2i(0, 0))
-		get_tree().change_scene_to_file("res://scenes/settings_window.tscn")
+		Utils.remove_mate(self)
+		Utils.open_settings(skinDir)
 	elif id == 102:
 		get_tree().quit(0)
+	elif id == 201:
+		Utils.open_settings("")
+	elif id == 202:
+		Utils.remove_mate(self)
+
+func onRemovalToggle(disabled):
+	$OptionsMenu.set_item_disabled($OptionsMenu.get_item_index(202), disabled)

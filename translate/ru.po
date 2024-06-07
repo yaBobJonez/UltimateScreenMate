@@ -36,6 +36,12 @@ msgstr "Делай только это"
 msgid "Do whatever"
 msgstr "Делай что угодно"
 
+msgid "Add mate"
+msgstr "Добавить приятеля"
+
+msgid "Remove mate"
+msgstr "Убрать приятеля"
+
 msgid "Options"
 msgstr "Опции"
 
@@ -47,12 +53,6 @@ msgstr "Скины"
 
 msgid "Settings"
 msgstr "Настройки"
-
-msgid "Enable running"
-msgstr "Включить бег"
-
-msgid "Enable walking"
-msgstr "Включить ходьбу"
 
 msgid "About USM"
 msgstr "Об USM"
@@ -119,3 +119,9 @@ msgstr "Выбранный скин может быть повреждён: 'wal
 
 msgid "BROKEN_SKIN_RUNNING"
 msgstr "Выбранный скин может быть повреждён: 'running' неполный."
+
+#~ msgid "Enable running"
+#~ msgstr "Включить бег"
+
+#~ msgid "Enable walking"
+#~ msgstr "Включить ходьбу"

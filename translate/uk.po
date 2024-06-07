@@ -36,6 +36,12 @@ msgstr "Роби лише це"
 msgid "Do whatever"
 msgstr "Роби що завгодно"
 
+msgid "Add mate"
+msgstr "Додати приятеля"
+
+msgid "Remove mate"
+msgstr "Видалити приятеля"
+
 msgid "Options"
 msgstr "Опції"
 
@@ -47,12 +53,6 @@ msgstr "Скіни"
 
 msgid "Settings"
 msgstr "Налаштування"
-
-msgid "Enable running"
-msgstr "Увімкнути ходьбу"
-
-msgid "Enable walking"
-msgstr "Увімкнути біг"
 
 msgid "About USM"
 msgstr "Про USM"
@@ -119,3 +119,9 @@ msgstr "Обраний скін може бути пошкодженим: 'walki
 
 msgid "BROKEN_SKIN_RUNNING"
 msgstr "Обраний скін може бути пошкодженим: 'running' неповний."
+
+#~ msgid "Enable running"
+#~ msgstr "Увімкнути ходьбу"
+
+#~ msgid "Enable walking"
+#~ msgstr "Увімкнути біг"

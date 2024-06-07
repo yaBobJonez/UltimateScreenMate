@@ -5,6 +5,8 @@
 [node name="SettingsWindow" type="Window"]
 initial_position = 2
 size = Vector2i(640, 480)
+always_on_top = true
+unfocusable = true
 script = ExtResource("1_wr5ga")
 
 [node name="PanelBg" type="Panel" parent="."]
@@ -41,17 +43,9 @@ text = "Settings"
 [node name="OptionsBar" type="HBoxContainer" parent="PanelBg/VBoxContainer"]
 layout_mode = 2
 
-[node name="EnableRunningCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
+[node name="Label" type="Label" parent="PanelBg/VBoxContainer/OptionsBar"]
 layout_mode = 2
-disabled = true
-button_pressed = true
-text = "Enable running"
-
-[node name="EnableWalkingCheck" type="CheckBox" parent="PanelBg/VBoxContainer/OptionsBar"]
-layout_mode = 2
-disabled = true
-button_pressed = true
-text = "Enable walking"
+text = "[TODO]"
 
 [node name="BottomBar" type="HBoxContainer" parent="PanelBg/VBoxContainer"]
 layout_mode = 2
@@ -80,6 +74,7 @@ text = "Close"
 [node name="DirectoryDialog" type="FileDialog" parent="."]
 title = "Select Skin directory"
 initial_position = 4
+ok_button_text = "Select Current Folder"
 dialog_hide_on_ok = true
 mode_overrides_title = false
 file_mode = 2
@@ -101,8 +96,6 @@ This program is free software under GPL v3.
 THIS PROGRAM IS INCOMPLETE AND MAY CHANGE IN
 THE FUTURE; EXPECT BUGS TO OCCUR."
 
-[connection signal="toggled" from="PanelBg/VBoxContainer/OptionsBar/EnableRunningCheck" to="." method="onRunningCheckbox"]
-[connection signal="toggled" from="PanelBg/VBoxContainer/OptionsBar/EnableWalkingCheck" to="." method="onWalkingCheckbox"]
 [connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/AboutButton" to="." method="onAbout"]
 [connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/InstallSkinButton" to="." method="onInstallSkin"]
 [connection signal="pressed" from="PanelBg/VBoxContainer/BottomBar/DeleteSkinButton" to="." method="onDeleteSkin"]

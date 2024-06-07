@@ -1,4 +1,4 @@
-#	Copyright © 2023 Mykhailo Stetsiuk
+#	Copyright © 2023–2024 Mykhailo Stetsiuk
 #
 #	This file is part of Ultimate ScreenMate.
 #
@@ -15,19 +15,19 @@
 
 extends AcceptDialog
 
-var skinDir
+var settings
 var isQuit
 
 func _ready():
-	skinDir = null; isQuit = true
-	#DisplayServer.window_set_size(Vector2i(0, 0))
+	isQuit = true
+	get_tree().root.min_size = Vector2i(0, 0)
+	get_tree().root.size = Vector2i(0, 0)
 	self.add_cancel_button("Quit")
-	self.popup_centered()
 	doAutoInstall()
 	await verifySettings()
-	await verifyConfig()
 	isQuit = false
-	get_tree().change_scene_to_file("res://scenes/main_window.tscn")
+	for mateConf in settings:
+		Utils.add_mate(mateConf["skin"])
 
 func _process(delta): pass
 
@@ -42,22 +42,27 @@ func doAutoInstall():
 		DirAccess.open(".").remove("autoinst")
 
 func verifySettings():
-	var settings = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
+	settings = JSON.parse_string(FileAccess.get_file_as_string("config.json"))
 	if settings == null:
 		self.title = "Warning"
 		self.dialog_text = "CONFIG_REQUIRED"
 		self.ok_button_text = "Go to Options"
 		self.popup_centered(); await self.confirmed
-	match settings:
-		{"skin": _, "walking": _, "running": _, ..}:
-			skinDir = "user://"+settings["skin"]+"/"
+	if typeof(settings) != TYPE_ARRAY:
+		self.title = "Error"
+		self.dialog_text = "BROKEN_CONFIG_RECONFIGURE"
+		self.ok_button_text = "Go to Options"
+		self.popup_centered(); await self.confirmed
+	for mateSetting in settings: match mateSetting:
+		{"skin": _, ..}:
+			await verifyConfig(mateSetting["skin"])
 		_:
 			self.title = "Warning"
 			self.dialog_text = "BROKEN_CONFIG_RECONFIGURE"
 			self.ok_button_text = "Go to Options"
 			self.popup_centered(); await self.confirmed
 
-func verifyConfig():
+func verifyConfig(skinDir):
 	var data = JSON.parse_string(FileAccess.get_file_as_string(skinDir+"config.json"))
 	if data == null:
 		self.title = "Error"

@@ -30,6 +30,12 @@ msgstr ""
 msgid "Do whatever"
 msgstr ""
 
+msgid "Add mate"
+msgstr ""
+
+msgid "Remove mate"
+msgstr ""
+
 msgid "Options"
 msgstr ""
 
@@ -40,12 +46,6 @@ msgid "Skins"
 msgstr ""
 
 msgid "Settings"
-msgstr ""
-
-msgid "Enable running"
-msgstr ""
-
-msgid "Enable walking"
 msgstr ""
 
 msgid "About USM"

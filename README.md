@@ -1,4 +1,4 @@
-# Ultimate ScreenMate v1.1-BETA
+# Ultimate ScreenMate v1.2-BETA
 
 ---
 
@@ -13,8 +13,8 @@ be incomplete or flawed.
 ---
 
 ## TODO:
+- add mates' names support
 - allow disabling certain actions (replace Settings)
-- add support to add/remove multiple screenmates in one instance
 - refactor
 
 ## License

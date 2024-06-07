@@ -1,4 +1,4 @@
-#	Copyright © 2023 Mykhailo Stetsiuk
+#	Copyright © 2023–2024 Mykhailo Stetsiuk
 #
 #	This file is part of Ultimate ScreenMate.
 #
@@ -14,6 +14,35 @@
 #	If not, see <https://www.gnu.org/licenses/>. 
 
 extends Node
+
+var scene_mate = preload("res://scenes/main_window.tscn")
+var scene_settings = preload("res://scenes/settings_window.tscn")
+var matesList = []
+signal matesList_removal_toggle(enable)
+
+func add_mate(skinDir):
+	var win = Window.new()
+	win.borderless = true; win.always_on_top = true; win.unfocusable = true
+	win.transparent = true; win.transparent_bg = true
+	# Required for the window's viewport to pass through input events!
+	win.physics_object_picking = true
+	var mate = scene_mate.instantiate()
+	mate.skinDir = skinDir
+	matesList.append(mate)
+	matesList_removal_toggle.connect(mate.onRemovalToggle)
+	win.add_child(mate)
+	get_tree().root.call_deferred("add_child", win)
+	matesList_removal_toggle.emit(len(matesList) < 2)
+
+func remove_mate(margCont):
+	matesList.erase(margCont)
+	margCont.get_parent().queue_free()
+	matesList_removal_toggle.emit(len(matesList) < 2)
+
+func open_settings(skinDir):
+	var options = scene_settings.instantiate()
+	options.skinDir = skinDir
+	get_tree().root.call_deferred("add_child", options)
 
 func copy_dir(from: String, to: String) -> Error:
 	var fromD = DirAccess.open(from)

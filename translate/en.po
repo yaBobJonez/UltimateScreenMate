@@ -36,6 +36,12 @@ msgstr "Do just that"
 msgid "Do whatever"
 msgstr "Do whatever"
 
+msgid "Add mate"
+msgstr "Add mate"
+
+msgid "Remove mate"
+msgstr "Remove mate"
+
 msgid "Options"
 msgstr "Options"
 
@@ -47,12 +53,6 @@ msgstr "Skins"
 
 msgid "Settings"
 msgstr "Settings"
-
-msgid "Enable running"
-msgstr "Enable running"
-
-msgid "Enable walking"
-msgstr "Enable walking"
 
 msgid "About USM"
 msgstr "About USM"
@@ -119,3 +119,9 @@ msgstr "Selected skin may be broken: 'walking' is incomplete."
 
 msgid "BROKEN_SKIN_RUNNING"
 msgstr "Selected skin may be broken: 'running' is incomplete."
+
+#~ msgid "Enable running"
+#~ msgstr "Enable running"
+
+#~ msgid "Enable walking"
+#~ msgstr "Enable walking"
